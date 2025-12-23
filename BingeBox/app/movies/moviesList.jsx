@@ -1,44 +1,20 @@
-import { StyleSheet, Text, View, Platform, Image } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
 import React from 'react'
-import { Colors } from '../constants/Color'
-import ThemedView from '../components/ThemedView'
-import ThemedButton from '../components/ThemedButton'
-import ThemedLogo from '../components/ThemedLogo'
-import Spacer from '../components/Spacer'
-import ThemedText from '../components/ThemeText'
-import {useRouter} from "expo-router"
+import { Colors } from '../../constants/Color'
+import ThemedView from '../../components/ThemedView'
+import ThemedText from '../../components/ThemeText'
 
 const fontFamilyPlatform =  Platform.OS === 'ios' ? 'Poppins-Bold' : 'Poppins-Bold';
 
-const HomeScreen = () => {
-const router = useRouter();
-
-const onPressMovieList = () => {
-  router.push("/movies/moviesList")
-}
-
+const moviesList = () => {
   return (
     <ThemedView style={[styles.container ]}>
-      <Spacer/>
-      <ThemedLogo/>
-
-      <Spacer/>
-      <ThemedText title={true} style={[styles.title]}> Welcome to BingeBox!</ThemedText>
-      <Spacer/>
-
-      <ThemedButton
-      onPress={onPressMovieList}
-      title="movie list"
-      >
-      <Text style={[styles.btnText]}>Browse Movies</Text>
-      </ThemedButton>
-
-    
+        <ThemedText style={[styles.title]}>Movie List</ThemedText>
     </ThemedView>
   )
 }
 
-export default HomeScreen
+export default moviesList
 
 const styles = StyleSheet.create({
       container: {
