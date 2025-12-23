@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Platform } from 'react-native'
+import { StyleSheet, Text, View, Platform, Image, ImageBackground, useColorScheme } from 'react-native'
 import React from 'react'
 import { Colors } from '../../constants/Color'
 import ThemedView from '../../components/ThemedView'
@@ -7,8 +7,9 @@ import ThemedText from '../../components/ThemeText'
 const fontFamilyPlatform =  Platform.OS === 'ios' ? 'Poppins-Bold' : 'Poppins-Bold';
 
 const moviesList = () => {
+
   return (
-    <ThemedView style={[styles.container ]}>
+    <ThemedView mode={'moviesList'} style={[styles.container ]}>
         <ThemedText style={[styles.title]}>Movie List</ThemedText>
     </ThemedView>
   )
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
       container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'flex-cent',
+        justifyContent: 'center',
     },
     title: {
         fontWeight: 'bold',
@@ -52,5 +53,6 @@ const styles = StyleSheet.create({
   fontWeight: 'bold',
   fontFamily: fontFamilyPlatform,
 },
+
 
 })
