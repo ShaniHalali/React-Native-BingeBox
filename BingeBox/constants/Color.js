@@ -4,7 +4,7 @@ export const Colors = {
   warning: "#cc475a",
   
   dark: {
-    text: "#fff",
+    text: "#201e2b",
     title: "#201e2b",
     background: "#2b9575",
     navBackground: "#201e2b",

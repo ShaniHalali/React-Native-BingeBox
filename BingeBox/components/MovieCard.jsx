@@ -11,13 +11,13 @@ import {
 const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
-const MovieCard = ({ id, title, poster, overView, vote_average }) => {
+const MovieCard = ({ id, title, poster}) => {
   const router = useRouter();
 
   const onMoviePress = () => {
     router.push({
       pathname: `/movies/${id}`,
-      params: { id, title, poster, overView, vote_average },
+      params: {id, title, poster},
     });
   };
 
