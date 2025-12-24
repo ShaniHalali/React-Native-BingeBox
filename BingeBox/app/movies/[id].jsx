@@ -11,18 +11,23 @@ const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
 const movieDetails = () => {
-  const { id, title, poster } = useLocalSearchParams();
-  console.log("selected movie details:", { id, title, poster });
+  const { title, poster, overview, voteAverage } = useLocalSearchParams();
+  console.log("selected movie details:", { title, poster, overview, voteAverage });
 
   return (
     <ThemedView mode={"movieDetails"} style={[styles.container]}>
       <Image source={{ uri: poster }} style={styles.image} />
       <Spacer height={10} />
       <ThemedText style={[styles.title]}>{title}</ThemedText>
+      <Spacer height={10} />
+
+      <View style={{paddingHorizontal: 40}}>
+      <ThemedText style={[styles.overviewText]}>OverView:</ThemedText>
+      <ThemedText style={[styles.detailsText]}>{overview} </ThemedText>
+      </View>
+      
       <Spacer />
-      <ThemedText style={[styles.detailsText]}>OverView: </ThemedText>
-      <Spacer />
-      <ThemedText style={[styles.detailsText]}> Rating: </ThemedText>
+      <ThemedText style={[styles.ratingText]}> Rating: {voteAverage} ⭐ </ThemedText>
 
       <ThemedButton title="movie list">
         <Text style={[styles.btnText]}>Add To Favorite</Text>
@@ -72,10 +77,22 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc",
     resizeMode: "stretch",
   },
-  detailsText: {
+    overviewText: {
     fontWeight: "bold",
-    alignItems: "flex-start",
+    alignSelf: "flex-start",
+    fontSize: 20,
+    fontFamily: fontFamilyPlatform,
+  },
+  detailsText: {
+    alignSelf: "flex-start",
+    fontSize: 20,
+    fontFamily: fontFamilyPlatform,
+  },
+
+    ratingText: {
+    fontWeight: "bold",
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
   },
 });
+

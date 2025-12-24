@@ -11,22 +11,27 @@ import {
 const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
-const MovieCard = ({ id, title, poster}) => {
+const MovieCard = ({ movie}) => {
   const router = useRouter();
 
   const onMoviePress = () => {
     router.push({
-      pathname: `/movies/${id}`,
-      params: {id, title, poster},
+      pathname: `/movies/${movie.id}`,
+      params: {
+        title: movie.title,
+        poster: movie.poster,
+        overview: movie.overview,
+        voteAverage: movie.voteAverage.toString(),
+      }
     });
   };
 
   return (
     <Pressable onPress={onMoviePress}>
       <View style={styles.card}>
-        <Image source={{ uri: poster }} style={styles.image} />
+        <Image source={{ uri: movie.poster }} style={styles.image} />
         <Text style={styles.title} numberOfLines={2}>
-          {title}
+          {movie.title}
         </Text>
       </View>
     </Pressable>

@@ -14,7 +14,7 @@ const MoviesFlatList = ({movies}) => {
         data={movies}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <MovieCard id={item.id} title={item.title} poster={item.poster} />
+          <MovieCard movie={item} />
         )}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
