@@ -3,32 +3,47 @@ import { Colors } from '../constants/Color'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import lightBackground from '../assets/image/cloudsBackground.png'
 import darkBackground from '../assets/image/darkCloudsBackground.png'
+import lightMovieDetails from '../assets/image/lightDetailsBack.png'
+import darkMovieDetails from '../assets/image/darkDetailsBack.png'
+
 
 const backgrounds = {
-  movieList: {
+  moviesList: {
     light: lightBackground,
     dark: darkBackground,
   },
+  movieDetails: {
+    light: lightMovieDetails,
+    dark: darkMovieDetails,
+  }
 }
 
 const ThemedView = ({ mode, style, children, ...props }) => {
   const colorScheme = useColorScheme()
   const scheme = colorScheme ?? 'light'
 
-  const isMovieMode = mode === 'moviesList'
-  const background = isMovieMode ? backgrounds.movieList[scheme] : null
+  const selectedMode = mode === "moviesList" ? "moviesList" : "movieDetails"
+  const background = backgrounds[selectedMode][scheme]
 
-  const Wrapper = isMovieMode ? ImageBackground : View
 
-  return (
-    <Wrapper
-      {...(isMovieMode ? { source: background } : {})}
-      style={[styles.background, style]}
+
+
+ return (
+     <>
+    <ImageBackground
+      source={background}
+      style={styles.background}
     >
-      <SafeAreaView style={{ flex: 1 }} {...props}>
-        {children}
-      </SafeAreaView>
-    </Wrapper>
+    <SafeAreaView
+      style={[{ flex: 1 }, style]}
+      {...props}
+    >
+      {children}
+    </SafeAreaView>
+
+    </ImageBackground>
+
+    </>
   )
 }
 
