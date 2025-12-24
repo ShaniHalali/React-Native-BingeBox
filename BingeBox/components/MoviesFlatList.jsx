@@ -3,14 +3,15 @@ import React from "react";
 import MovieCard from "../components/MovieCard";
 import mockData from "../mockData/mockMoviesData";
 
-const MoviesFlatList = () => {
+
+const MoviesFlatList = ({movies}) => {
 
 
   return (
     <View style={styles.wrapper}>
       <FlatList
         horizontal
-        data={mockData}
+        data={movies}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <MovieCard id={item.id} title={item.title} poster={item.poster} />

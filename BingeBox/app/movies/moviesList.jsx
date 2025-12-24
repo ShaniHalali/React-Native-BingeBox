@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Platform, Image, ImageBackground, useColorScheme } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Colors } from '../../constants/Color'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemeText'
@@ -15,15 +15,20 @@ const moviesList = () => {
   useEffect(() => {
     const loadMovies = async () => {
       try{
-        const movies = await fetchMovies()
-        console.log('movies fetched:', movies)
+        const moviesFetchedList = await fetchMovies()
+        console.log('movies fetched:', moviesFetchedList)
+        setMovies(moviesFetchedList)
 
       } catch(error) {
         console.error('Failed to fetch movies:', error)
+        setError(error)
       }
     }
     loadMovies()
   }, [])
+
+  const [moviesList, setMovies] = useState(null)
+  const [error, setError] = useState(null)
 
   return (
     <ThemedView mode={'moviesList'} style={[styles.container ]}>
@@ -31,7 +36,19 @@ const moviesList = () => {
          <ThemedText style={[styles.title, { alignSelf: 'center' }]}>Ready to Binge?</ThemedText>
          <ThemedText style={[styles.title, { alignSelf: 'center' }]}>Heres whats hot right now</ThemedText>
         <Spacer/>
-        <MoviesFlatList/>
+        {/* Failed to fetch movies*/}
+        {error && <Text style={styles.error}>{error}</Text>}
+
+        {/* Loading indicator*/}
+        {!moviesList && !error && (
+          <ThemedText style={{marginTop: 20 }}>Loading Movies...</ThemedText>
+        )}
+
+        {/* Uploaded Movies successfully */}
+        {moviesList && (
+        <MoviesFlatList movies={moviesList}/>
+        )}
+
     </ThemedView>
   )
 }
