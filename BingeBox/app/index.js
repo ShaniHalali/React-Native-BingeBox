@@ -18,7 +18,7 @@ const onPressMovieList = () => {
 }
 
   return (
-    <ThemedView style={[styles.container ]}>
+    <ThemedView mode={'moviesList'} style={[styles.container ]}>
       <Spacer/>
       <ThemedLogo/>
 

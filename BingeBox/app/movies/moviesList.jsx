@@ -3,6 +3,9 @@ import React from 'react'
 import { Colors } from '../../constants/Color'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemeText'
+import ThemedLogo from '../../components/ThemedLogo'
+import Spacer from '../../components/Spacer'
+import MoviesFlatList from '../../components/MoviesFlatList'
 
 const fontFamilyPlatform =  Platform.OS === 'ios' ? 'Poppins-Bold' : 'Poppins-Bold';
 
@@ -10,7 +13,11 @@ const moviesList = () => {
 
   return (
     <ThemedView mode={'moviesList'} style={[styles.container ]}>
-        <ThemedText style={[styles.title]}>Movie List</ThemedText>
+        <ThemedLogo style={{height: 150 , alignSelf: 'center'}}/>
+         <ThemedText style={[styles.title, { alignSelf: 'center' }]}>Ready to Binge?</ThemedText>
+         <ThemedText style={[styles.title, { alignSelf: 'center' }]}>Heres whats hot right now</ThemedText>
+        <Spacer/>
+        <MoviesFlatList/>
     </ThemedView>
   )
 }
@@ -20,13 +27,18 @@ export default moviesList
 const styles = StyleSheet.create({
       container: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
     },
     title: {
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 25,
         fontFamily: fontFamilyPlatform,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
         
     },
     error: {
