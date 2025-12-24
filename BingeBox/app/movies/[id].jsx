@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Platform, Image } from "react-native";
+import { StyleSheet, Text, View, Platform, Image, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "../../constants/Color";
 import { useLocalSearchParams } from "expo-router";
@@ -16,6 +16,7 @@ const movieDetails = () => {
 
   return (
     <ThemedView mode={"movieDetails"} style={[styles.container]}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
       <Image source={{ uri: poster }} style={styles.image} />
       <Spacer height={10} />
       <ThemedText style={[styles.title]}>{title}</ThemedText>
@@ -26,12 +27,13 @@ const movieDetails = () => {
       <ThemedText style={[styles.detailsText]}>{overview} </ThemedText>
       </View>
       
-      <Spacer />
+      <Spacer height={10} />
       <ThemedText style={[styles.ratingText]}> Rating: {voteAverage} ⭐ </ThemedText>
 
       <ThemedButton title="movie list">
         <Text style={[styles.btnText]}>Add To Favorite</Text>
       </ThemedButton>
+      </ScrollView>
     </ThemedView>
   );
 };
@@ -94,5 +96,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
   },
+  scrollContent: {
+  alignItems: "center",
+  paddingBottom: 40,
+},
+
 });
 
