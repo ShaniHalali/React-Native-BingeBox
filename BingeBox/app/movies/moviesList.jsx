@@ -1,5 +1,9 @@
 import { StyleSheet, Text, View, Platform, Image, ImageBackground, useColorScheme } from 'react-native'
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
+=======
+import React, { useEffect } from 'react'
+>>>>>>> 120590da5934852199a2e6d37db706798a07aede
 import { Colors } from '../../constants/Color'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemeText'
@@ -15,6 +19,7 @@ const moviesList = () => {
   useEffect(() => {
     const loadMovies = async () => {
       try{
+<<<<<<< HEAD
         const moviesFetchedList = await fetchMovies()
         console.log('movies fetched:', moviesFetchedList)
         setMovies(moviesFetchedList)
@@ -22,14 +27,24 @@ const moviesList = () => {
       } catch(error) {
         console.error('Failed to fetch movies:', error)
         setError(error)
+=======
+        const movies = await fetchMovies()
+        console.log('movies fetched:', movies)
+
+      } catch(error) {
+        console.error('Failed to fetch movies:', error)
+>>>>>>> 120590da5934852199a2e6d37db706798a07aede
       }
     }
     loadMovies()
   }, [])
 
+<<<<<<< HEAD
   const [moviesList, setMovies] = useState(null)
   const [error, setError] = useState(null)
 
+=======
+>>>>>>> 120590da5934852199a2e6d37db706798a07aede
   return (
     <ThemedView mode={'moviesList'} style={[styles.container ]}>
         <ThemedLogo style={{height: 150 , alignSelf: 'center'}}/>
