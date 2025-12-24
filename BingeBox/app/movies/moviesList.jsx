@@ -1,15 +1,29 @@
 import { StyleSheet, Text, View, Platform, Image, ImageBackground, useColorScheme } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Colors } from '../../constants/Color'
 import ThemedView from '../../components/ThemedView'
 import ThemedText from '../../components/ThemeText'
 import ThemedLogo from '../../components/ThemedLogo'
 import Spacer from '../../components/Spacer'
 import MoviesFlatList from '../../components/MoviesFlatList'
+import { fetchMovies } from '../../services/mappers/api/moviesApi'
 
 const fontFamilyPlatform =  Platform.OS === 'ios' ? 'Poppins-Bold' : 'Poppins-Bold';
 
 const moviesList = () => {
+
+  useEffect(() => {
+    const loadMovies = async () => {
+      try{
+        const movies = await fetchMovies()
+        console.log('movies fetched:', movies)
+
+      } catch(error) {
+        console.error('Failed to fetch movies:', error)
+      }
+    }
+    loadMovies()
+  }, [])
 
   return (
     <ThemedView mode={'moviesList'} style={[styles.container ]}>
