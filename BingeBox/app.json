@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "BingeBox",
+    "scheme": ["bingebox"],
     "name": "BingeBox",
     "slug": "BingeBox",
     "version": "1.0.0",
@@ -21,13 +21,20 @@
         "foregroundImage": "./assets/bingeBoxIcon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.shanihalali.BingeBox"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "18193ca0-92da-4685-822f-da995bed41a1"
+      }
+    }
   }
 }
