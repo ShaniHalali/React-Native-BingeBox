@@ -48,12 +48,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 30,
-        fontFamily: fontFamilyPlatform,
-        
-    },
+  title: {
+    fontWeight: "bold",
+    fontSize: 30,
+    fontFamily: fontFamilyPlatform,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
     error: {
         color: Colors.warning,
         padding: 10,
