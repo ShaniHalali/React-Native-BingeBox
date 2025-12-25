@@ -11,18 +11,18 @@ import {
 const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
-const MovieCard = ({ movie}) => {
+const FavoriteCard = ({ favorite}) => {
   const router = useRouter();
 
   const onMoviePress = () => {
     router.push({
       pathname: `/${movie.id}`,
       params: {
-        id: movie.id,
-        title: movie.title,
-        poster: movie.poster,
-        overview: movie.overview,
-        voteAverage: movie.voteAverage,
+        id: favorite.id,
+        title: favorite.title,
+        poster: favorite.poster,
+        overview: favorite.overview,
+        voteAverage: favorite.voteAverage.toString(),
       }
     });
   };
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MovieCard;
+export default FavoriteCard;

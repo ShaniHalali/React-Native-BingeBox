@@ -11,6 +11,7 @@ import {
   addFavoriteMovie,
   removeFavoriteMovie,
 } from "../../redux/slices/favoritesSlice";
+import FavoritesFlatList from '../../components/FavoritesFlatList';
 
 const fontFamilyPlatform = Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
@@ -36,6 +37,8 @@ const favoritesMoviesList = () => {
          <ThemedText style={[styles.title, { alignSelf: 'center' }]}>{getScreenTitle()}</ThemedText>
           <Spacer/>
           {/* Favorites movies list*/}
+          {isSavedMovies && <FavoritesFlatList favorites={favoritesMovies}/>}
+          
 
     </ThemedView>
 

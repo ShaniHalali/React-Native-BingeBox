@@ -35,7 +35,7 @@ const movieDetails = () => {
   const dispatch = useDispatch();
 
   const favoritesMovies = useSelector((state) => state.favorites);
-  console.log("Favorites movies REDUX: ", favoritesMovies);
+   //console.log("Favorites movies REDUX: ", favoritesMovies);
   const movieId = Number(id);
   const isFavorite = favoritesMovies.includes(movieId);
 

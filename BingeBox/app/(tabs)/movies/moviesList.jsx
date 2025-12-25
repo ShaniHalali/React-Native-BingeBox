@@ -15,25 +15,41 @@ import ThemedLogo from "../../../components/ThemedLogo";
 import Spacer from "../../../components/Spacer";
 import MoviesFlatList from "../../../components/MoviesFlatList";
 import { fetchMovies } from "../../../services/mappers/api/moviesApi";
+import { useDispatch, useSelector } from "react-redux";
+import { setMovies } from "../../../redux/slices/moviesSlice";
 
 const fontFamilyPlatform = Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
 const moviesList = () => {
-  useEffect(() => {
-    const loadMovies = async () => {
-      try {
-        const moviesFetchedList = await fetchMovies();
-        console.log("movies fetched:", moviesFetchedList);
-        setMovies(moviesFetchedList);
-      } catch (error) {
-        console.error("Failed to fetch movies:", error);
-        setError(error);
-      }
-    };
-    loadMovies();
-  }, []);
+  const dispatch = useDispatch();
+  
+  const movies = useSelector((state) => state.movies);
+  //console.log("movies REDUX: ", movies);
+  
+const [isLoading, setIsLoading] = useState(true);
 
-  const [moviesList, setMovies] = useState(null);
+useEffect(() => {
+  if (movies.length > 0) {
+    setIsLoading(false);
+    return;
+  }
+
+  const loadMovies = async () => {
+    try {
+      const moviesFetchedList = await fetchMovies();
+      dispatch(setMovies(moviesFetchedList));
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  loadMovies();
+}, [movies.length]);
+
+
+
   const [error, setError] = useState(null);
 
   return (
@@ -47,15 +63,15 @@ const moviesList = () => {
       </ThemedText>
       <Spacer />
       {/* Failed to fetch movies*/}
-      {error && <Text style={styles.error}>{error}</Text>}
+      {error && <Text style={styles.error}>{error.message}</Text>}
 
       {/* Loading indicator*/}
-      {!moviesList && !error && (
+      {isLoading && (
         <ThemedText style={{ marginTop: 20 }}>Loading Movies...</ThemedText>
       )}
 
       {/* Uploaded Movies successfully */}
-      {moviesList && <MoviesFlatList movies={moviesList} />}
+      {!isLoading && <MoviesFlatList movies={movies} />}
     </ThemedView>
   );
 };
