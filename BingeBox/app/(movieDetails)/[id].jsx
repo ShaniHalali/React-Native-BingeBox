@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Platform, Image, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  Image,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { Colors } from "../../constants/Color";
 import { useLocalSearchParams } from "expo-router";
@@ -12,41 +19,52 @@ const fontFamilyPlatform =
 
 
 
-
 const movieDetails = () => {
   const { title, poster, overview, voteAverage } = useLocalSearchParams();
-  console.log("selected movie details:", { title, poster, overview, voteAverage });
+  console.log("selected movie details:", {
+    title,
+    poster,
+    overview,
+    voteAverage,
+  });
 
   return (
     <ThemedView mode={"movieDetails"} style={[styles.container]}>
-      <Spacer height={20}/>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-      <Image source={{ uri: poster }} style={styles.image} />
-      <Spacer height={10} />
-      <ThemedText style={[styles.title]}>{title}</ThemedText>
-      <Spacer height={10} />
+<ScrollView
+  contentContainerStyle={styles.scrollContent}
+  keyboardShouldPersistTaps="handled"
+  bounces={false}              // iOS
+  overScrollMode="never"       // Android
+>
 
-      <View style={{paddingHorizontal: 40}}>
-      <ThemedText style={[styles.overviewText]}>OverView:</ThemedText>
-      <ThemedText style={[styles.detailsText]}>{overview} </ThemedText>
-      </View>
-      
-      <Spacer height={10} />
-      <ThemedText style={[styles.ratingText]}> Rating: {voteAverage} ⭐ </ThemedText>
+        <Image source={{ uri: poster }} style={styles.image} />
+        <Spacer height={10} />
+        <ThemedText style={[styles.title]}>{title}</ThemedText>
+        <Spacer height={10} />
 
-      <ThemedButton title="movie list">
-        <Text style={[styles.btnText]}>Add To Favorite</Text>
-      </ThemedButton>
+        <View style={{ paddingHorizontal: 40 }}>
+          <ThemedText style={[styles.overviewText]}>OverView:</ThemedText>
+          <ThemedText style={[styles.detailsText]}>{overview} </ThemedText>
+        </View>
+
+        <Spacer height={10} />
+        <ThemedText style={[styles.ratingText]}>
+          {" "}
+          Rating: {voteAverage} ⭐{" "}
+        </ThemedText>
+
+        <ThemedButton title="movie list">
+          <Text style={[styles.btnText]}>Add To Favorite</Text>
+        </ThemedButton>
       </ScrollView>
     </ThemedView>
   );
 };
 
-export default movieDetails;
+export default React.memo(movieDetails);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     width: "100%",
     alignItems: "center",
   },
@@ -78,12 +96,12 @@ const styles = StyleSheet.create({
 
   image: {
     width: "70%",
-    height: "70%",
+    height: 350,
     borderRadius: 10,
     backgroundColor: "#ccc",
     resizeMode: "stretch",
   },
-    overviewText: {
+  overviewText: {
     fontWeight: "bold",
     alignSelf: "flex-start",
     fontSize: 20,
@@ -95,15 +113,15 @@ const styles = StyleSheet.create({
     fontFamily: fontFamilyPlatform,
   },
 
-    ratingText: {
+  ratingText: {
     fontWeight: "bold",
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
   },
   scrollContent: {
   alignItems: "center",
-  paddingBottom: 40,
+  paddingBottom: 30,
+  minHeight: "100%",
 },
 
 });
-
