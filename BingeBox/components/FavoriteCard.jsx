@@ -7,6 +7,7 @@ import {
   Platform,
   Pressable,
 } from "react-native";
+import { Colors } from "../constants/Color";
 
 const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
@@ -16,13 +17,13 @@ const FavoriteCard = ({ favorite}) => {
 
   const onMoviePress = () => {
     router.push({
-      pathname: `/${movie.id}`,
+      pathname: `/${favorite.id}`,
       params: {
         id: favorite.id,
         title: favorite.title,
         poster: favorite.poster,
         overview: favorite.overview,
-        voteAverage: favorite.voteAverage.toString(),
+        voteAverage: favorite.voteAverage,
       }
     });
   };
@@ -30,10 +31,14 @@ const FavoriteCard = ({ favorite}) => {
   return (
     <Pressable onPress={onMoviePress}>
       <View style={styles.card}>
-        <Image source={{ uri: movie.poster }} style={styles.image} />
-        <Text style={styles.title} numberOfLines={2}>
-          {movie.title}
+
+        <View style={styles.textContainer}>
+        <Image source={{ uri: favorite.poster }} style={styles.image} />
+        <Text style={styles.title} numberOfLines={3}>
+          {favorite.title}
         </Text>
+        </View>
+        
       </View>
     </Pressable>
   );
@@ -41,24 +46,34 @@ const FavoriteCard = ({ favorite}) => {
 
 const styles = StyleSheet.create({
   card: {
-    width: 200,
-    height: 400,
-    marginHorizontal: 8,
-    alignItems: "center",
+    width: "100%",
+    height: 100,
+    marginVertical: 8,
+    backgroundColor: Colors.primary,
+    borderRadius: 10,
+    flexDirection: "row",
   },
   image: {
-    width: 200,
-    height: 300,
-    borderRadius: 20,
-    backgroundColor: "#ccc",
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+    marginTop: 10,
+    resizeMode: "contain",    
   },
   title: {
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
     fontWeight: "bold",
-    textAlign: "center",
     color: "#070707ff",
-    padding: 10,
+    flex: 1,
+    flexShrink: 1,
+    marginTop: 20,
+  },
+
+  textContainer: {
+    flex: 1,
+    flexDirection: "row",
+    gap: 10,
   },
 });
 

@@ -37,7 +37,7 @@ const favoritesMoviesList = () => {
          <ThemedText style={[styles.title, { alignSelf: 'center' }]}>{getScreenTitle()}</ThemedText>
           <Spacer/>
           {/* Favorites movies list*/}
-          {isSavedMovies && <FavoritesFlatList favorites={favoritesMovies}/>}
+          {isSavedMovies && <FavoritesFlatList />}
           
 
     </ThemedView>

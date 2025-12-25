@@ -1,15 +1,21 @@
 import { View, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import FavoriteCard from "../components/FavoriteCard"
+import { useDispatch, useSelector } from "react-redux";
 
 
-const FavoritesFlatList = ({favoritesMovies}) => {
+
+const FavoritesFlatList = () => {
+    const movies = useSelector((state) => state.movies);
+    const favoritesIds = useSelector((state) => state.favorites);
+
+    const favoritesMovies = movies.filter((movie) => favoritesIds.includes(movie.id));
 
 
   return (
     <View style={styles.wrapper}>
       <FlatList
-        horizontal
+        ver
         data={favoritesMovies}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
@@ -26,11 +32,9 @@ export default FavoritesFlatList;
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: "100%",
-    alignItems: "center",
+   
   },
   listContainer: {
-    paddingHorizontal: 12,
-    alignItems: "center",
+    
   },
 });
