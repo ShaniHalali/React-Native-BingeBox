@@ -1,10 +1,12 @@
 import { Stack } from "expo-router";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+import {LoadFavorites} from "../redux/loadFavorites"
 
 export default function RootLayout() {
   return (
     <Provider store={store}>
+    <LoadFavorites/>
     <Stack>
      <Stack.Screen
         name="index"
