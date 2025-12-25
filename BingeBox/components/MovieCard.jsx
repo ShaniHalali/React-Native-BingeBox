@@ -22,7 +22,7 @@ const MovieCard = ({ movie}) => {
         title: movie.title,
         poster: movie.poster,
         overview: movie.overview,
-        voteAverage: movie.voteAverage,
+        vote_average: movie.vote_average,
       }
     });
   };

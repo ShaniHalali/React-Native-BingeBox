@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    gap: 10,
   },
   title: {
     fontWeight: "bold",
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamilyPlatform,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.8,
     shadowRadius: 3.84,
     elevation: 5,
   },

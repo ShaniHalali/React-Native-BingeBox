@@ -34,6 +34,7 @@ const favoritesMoviesList = () => {
   return (
     <ThemedView mode={'moviesList'} >
         <ThemedLogo style={{height: 150 , alignSelf: 'center'}}/>
+        <Spacer height={10}/>
          <ThemedText style={[styles.title, { alignSelf: 'center' }]}>{getScreenTitle()}</ThemedText>
           <Spacer/>
           {/* Favorites movies list*/}
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
       fontFamily: fontFamilyPlatform,
       shadowColor: "#000",
       shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.25,
+      shadowOpacity: 0.8,
       shadowRadius: 3.84,
       elevation: 5,
     },

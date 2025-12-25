@@ -23,13 +23,13 @@ const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
 const movieDetails = () => {
-  const { id, title, poster, overview, voteAverage } = useLocalSearchParams();
+  const { id, title, poster, overview, vote_average } = useLocalSearchParams();
   console.log("selected movie details:", {
     id,
     title,
     poster,
     overview,
-    voteAverage,
+    vote_average,
   });
 
   const dispatch = useDispatch();
@@ -70,7 +70,7 @@ const movieDetails = () => {
 
         <Spacer height={10} />
         <ThemedText style={[styles.ratingText]}>
-          Rating: {voteAverage} ⭐
+          Rating: {vote_average} ⭐
         </ThemedText>
 
         <ThemedButton
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamilyPlatform,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
   },
@@ -131,18 +131,23 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
+    color: "#0e0d0dff",
+    
   },
   detailsText: {
     alignSelf: "flex-start",
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
+    color: "#100f0fff",
+    
   },
 
   ratingText: {
     fontWeight: "bold",
     fontSize: 20,
     fontFamily: fontFamilyPlatform,
-  },
+    color: "#121010ff",
+    },
   scrollContent: {
     alignItems: "center",
     paddingBottom: 30,
