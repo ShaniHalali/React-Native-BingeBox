@@ -18,6 +18,7 @@ const MovieCard = ({ movie}) => {
     router.push({
       pathname: `/${movie.id}`,
       params: {
+        id: movie.id,
         title: movie.title,
         poster: movie.poster,
         overview: movie.overview,

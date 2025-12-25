@@ -6,37 +6,58 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Colors } from "../../constants/Color";
 import { useLocalSearchParams } from "expo-router";
 import ThemedView from "../../components/ThemedView";
 import ThemedText from "../../components/ThemeText";
 import Spacer from "../../components/Spacer";
 import ThemedButton from "../../components/ThemedButton";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addFavoriteMovie,
+  removeFavoriteMovie,
+} from "../../redux/slices/favoritesSlice";
 
 const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
-
-
 const movieDetails = () => {
-  const { title, poster, overview, voteAverage } = useLocalSearchParams();
+  const { id, title, poster, overview, voteAverage } = useLocalSearchParams();
   console.log("selected movie details:", {
+    id,
     title,
     poster,
     overview,
     voteAverage,
   });
 
+  const dispatch = useDispatch();
+
+  const favoritesMovies = useSelector((state) => state.favorites);
+  console.log("Favorites movies REDUX: ", favoritesMovies);
+  const movieId = Number(id);
+  const isFavorite = favoritesMovies.includes(movieId);
+
+
+  const onPressFavoriteButton = () => {
+    if (isFavorite) {
+      // user can remove it from the list
+      dispatch(removeFavoriteMovie(movieId));
+    } else {
+      dispatch(addFavoriteMovie(movieId));
+
+    }
+  };
+
   return (
     <ThemedView mode={"movieDetails"} style={[styles.container]}>
-<ScrollView
-  contentContainerStyle={styles.scrollContent}
-  keyboardShouldPersistTaps="handled"
-  bounces={false}              // iOS
-  overScrollMode="never"       // Android
->
-
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        keyboardShouldPersistTaps="handled"
+        bounces={false} // iOS
+        overScrollMode="never" // Android
+      >
         <Image source={{ uri: poster }} style={styles.image} />
         <Spacer height={10} />
         <ThemedText style={[styles.title]}>{title}</ThemedText>
@@ -49,19 +70,23 @@ const movieDetails = () => {
 
         <Spacer height={10} />
         <ThemedText style={[styles.ratingText]}>
-          {" "}
-          Rating: {voteAverage} ⭐{" "}
+          Rating: {voteAverage} ⭐
         </ThemedText>
 
-        <ThemedButton title="movie list">
-          <Text style={[styles.btnText]}>Add To Favorite</Text>
+        <ThemedButton
+          title="is Favorite movie button"
+          onPress={onPressFavoriteButton}
+        >
+          <Text style={styles.btnText}>
+            {isFavorite ? "Remove from favorites" : "Add to favorites"}
+          </Text>
         </ThemedButton>
       </ScrollView>
     </ThemedView>
   );
 };
 
-export default React.memo(movieDetails);
+export default movieDetails;
 
 const styles = StyleSheet.create({
   container: {
@@ -119,9 +144,8 @@ const styles = StyleSheet.create({
     fontFamily: fontFamilyPlatform,
   },
   scrollContent: {
-  alignItems: "center",
-  paddingBottom: 30,
-  minHeight: "100%",
-},
-
+    alignItems: "center",
+    paddingBottom: 30,
+    minHeight: "100%",
+  },
 });
