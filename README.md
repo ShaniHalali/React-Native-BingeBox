@@ -2,6 +2,8 @@
 
 BingeBox is a cross-platform movie browsing app built with **React Native (Expo)**. It allows users to explore popular, top-rated, upcoming movies, and save favorite ones using **Redux** with automatic sync to **AsyncStorage**. The app supports **Dark Mode**, smooth navigation, and is compatible with both **Android** (APK available) and **iOS** (tested on Expo Go).
 
+📲 Download the app:  
+[⬇️ APK Download](https://github.com/ShaniHalali/React-Native-BingeBox/releases/tag/v1.0.0)
 
 https://github.com/user-attachments/assets/49ff3912-9d6e-457c-963f-30ca914740e5
 
