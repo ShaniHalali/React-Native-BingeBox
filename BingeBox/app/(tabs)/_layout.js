@@ -17,7 +17,7 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="favoritesMoviesList"
                 options={{
-                    title: 'Favorites',
+                    title: 'My Favorites',
                     headerShown: false,
                     tabBarIcon: ({color, focused}) => (
                         <Ionicons name={focused? 'heart' : 'heart-outline'} size={24} color={color}/>

@@ -10,6 +10,8 @@ import {useRouter} from "expo-router"
 
 const fontFamilyPlatform =  Platform.OS === 'ios' ? 'Poppins-Bold' : 'Poppins-Bold';
 
+
+
 const HomeScreen = () => {
 const router = useRouter();
 
