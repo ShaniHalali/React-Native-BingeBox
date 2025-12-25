@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    width: "80%",
-    height: 250,
+    width: "70%",
+    height: "70%",
     borderRadius: 10,
     backgroundColor: "#ccc",
     resizeMode: "stretch",
