@@ -10,12 +10,16 @@ import ThemedButton from "../../components/ThemedButton";
 const fontFamilyPlatform =
   Platform.OS === "ios" ? "Poppins-Bold" : "Poppins-Bold";
 
+
+
+
 const movieDetails = () => {
   const { title, poster, overview, voteAverage } = useLocalSearchParams();
   console.log("selected movie details:", { title, poster, overview, voteAverage });
 
   return (
     <ThemedView mode={"movieDetails"} style={[styles.container]}>
+      <Spacer height={20}/>
       <ScrollView contentContainerStyle={styles.scrollContent}>
       <Image source={{ uri: poster }} style={styles.image} />
       <Spacer height={10} />

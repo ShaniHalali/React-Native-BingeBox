@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, Platform, Image, ImageBackground, useColorScheme } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { Colors } from '../../constants/Color'
-import ThemedView from '../../components/ThemedView'
-import ThemedText from '../../components/ThemeText'
-import ThemedLogo from '../../components/ThemedLogo'
-import Spacer from '../../components/Spacer'
-import MoviesFlatList from '../../components/MoviesFlatList'
-import { fetchMovies } from '../../services/mappers/api/moviesApi'
+import { Colors } from '../../../constants/Color'
+import ThemedView from '../../../components/ThemedView'
+import ThemedText from '../../../components/ThemeText'
+import ThemedLogo from '../../../components/ThemedLogo'
+import Spacer from '../../../components/Spacer'
+import MoviesFlatList from '../../../components/MoviesFlatList'
+import { fetchMovies } from '../../../services/mappers/api/moviesApi'
 
 const fontFamilyPlatform =  Platform.OS === 'ios' ? 'Poppins-Bold' : 'Poppins-Bold';
 
